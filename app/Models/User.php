@@ -17,9 +17,27 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nev',
         'email',
-        'password',
+        'jelszo',
+        'telefonszam',
+        'szemelyi_szam',
+        'szuletesi_datum',
+        'ceg',
+        'cegnev',
+        'ceg_tipus',
+        'ado_szam',
+        'bankszamlaszam',
+        'orszag',
+        'iranyitoszam',
+        'varos',
+        'utca',
+        'utca_jellege',
+        'hazszam',
+        'epulet',
+        'lepcsohaz',
+        'emelet',
+        'ajto',
     ];
 
     /**
@@ -31,6 +49,13 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Primary key for the model
+     *
+     * @var string
+     */
+    protected $primaryKey = 'felhasznaloid';
 
     /**
      * Get the attributes that should be cast.
