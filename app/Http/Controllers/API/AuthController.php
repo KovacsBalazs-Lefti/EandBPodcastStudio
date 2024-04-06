@@ -18,12 +18,22 @@ class AuthController extends Controller
         // Felhasználó létrehozása és mentése
         $user = User::create($userData);
 
-        return $user;
+        //return $user;
+        return response()->json($user, 201);
 
     }
     public function login(LoginRequest $request)  {
-        $user = User::where("email", $request->email)->get();
-        return $user;
+        $user = User::where("email", $request->email)->first();
+
+        if (!$user || !Hash::check($request->jelszo, $user->jelszo)) {
+            return response()->json(["message" => "Hibás felhasználói név, vagy jelszó"], 401);
+        }
+
+        //felhasználókövetés
+        $token = $user->createToken("AuthToken")->plainTextToken;
+
+        //401 (nincs authentikálva a felhasználó)
+        return response()->json(["token" => $token]);
 
     }
 
