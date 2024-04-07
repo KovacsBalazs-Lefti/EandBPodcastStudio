@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('token');
             $table->text('abilities');
             $table->timestamp('expires_at')->nullable();
+            $table->timestamp('last_used_at')->nullable(); 
             $table->timestamps();
         });
 
