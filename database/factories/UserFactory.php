@@ -24,11 +24,28 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'nev' => $this->faker->name(),
+        'email' => $this->faker->unique()->safeEmail(),
+        'jelszo' => bcrypt('pistike48'), // Biztonságos jelszó generálása
+        'telefonszam' => $this->faker->phoneNumber(),
+        'szemelyi_szam' => $this->faker->numerify('##########'), // 10 jegyű személyi szám generálása
+        'szuletesi_datum' => $this->faker->date('Y-m-d', '-40 years'), // 40 évvel ezelőtti dátum generálása
+        'ceg' => true,
+        'cegnev' => $this->faker->company(),
+        'ceg_tipus' => $this->faker->randomElement(['Bt', 'Kft', 'Zrt']),
+        'ado_szam' => $this->faker->numerify('##########'), // 10 jegyű adószám generálása
+        'bankszamlaszam' => $this->faker->iban('HU'), // Magyar bankszámlaszám generálása
+        'orszag' => 'Magyarország',
+        'iranyitoszam' => $this->faker->postcode(),
+        'varos' => $this->faker->city(),
+        'utca' => $this->faker->streetName(),
+        'utca_jellege' => $this->faker->randomElement(['út', 'utca', 'köz', 'tér']),
+        'hazszam' => $this->faker->buildingNumber(),
+        'epulet' => $this->faker->randomLetter(),
+        'lepcsohaz' => $this->faker->randomDigitNotNull(),
+        'emelet' => $this->faker->randomDigitNotNull(),
+        'ajto' => $this->faker->randomDigitNotNull(),
+
         ];
     }
 

@@ -38,7 +38,28 @@ class AuthController extends Controller
     }
 
 
-    public function logut(Request $request) {
+    public function logout(Request $request) {
+        //hitelesített felhasználó lekérdezése
+        //$user= $request->user();
+        //$user= Auth::user();
+        $user = auth()->user();
+        //kijelentkezéshez töröljük az aktuális használt tokent
 
+        /**@disregard P1013 Undefined method */
+        $user->currentAccessToken()->delete();
+        //$currentToken = $user->currentAccessToken();
+        //mindenhonnan kijelentkeztetés (listában visszaadja az össes tokent)
+
+         //$allTokens = $user->tokens;
+        //return $allTokens;
+
+        return response()->noContent();
+    }
+
+    public function logoutEverywhere() {
+        $user = auth()->user();
+        /**@disregard P1013 Undefined method */
+        $user->tokens()->delete();
+        return response()->noContent();
     }
 }
