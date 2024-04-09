@@ -23,9 +23,12 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $name = $this->faker->unique()->name();
+        $email = strtolower(str_replace(' ', '.', $name)) . '@example.com';
+
         return [
-            'nev' => $this->faker->name(),
-        'email' => $this->faker->unique()->safeEmail(),
+        'nev' => $name,
+        'email' => $email,
         'jelszo' => bcrypt('pistike48'), // Biztonságos jelszó generálása
         'telefonszam' => $this->faker->phoneNumber(),
         'szemelyi_szam' => $this->faker->numerify('##########'), // 10 jegyű személyi szám generálása
