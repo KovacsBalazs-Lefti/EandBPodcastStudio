@@ -28,15 +28,15 @@ class UserFactory extends Factory
 
         return [
         'nev' => $name,
-        'email' => $email,
-        'jelszo' => bcrypt('pistike48'), // Biztonságos jelszó generálása
+        'email' => $this->faker->unique()->safeEmail(),
+        'jelszo' => bcrypt('pistike48'),
         'telefonszam' => $this->faker->phoneNumber(),
-        'szemelyi_szam' => $this->faker->numerify('##########'), // 10 jegyű személyi szám generálása
-        'szuletesi_datum' => $this->faker->date('Y-m-d', '-40 years'), // 40 évvel ezelőtti dátum generálása
-        'ceg' => true,
+        'szemelyi_szam' => $this->faker->regexify('[A-Za-z0-9]{8}'),
+        'szuletesi_datum' => $this->faker->date('Y-m-d', '-18 years'), // 40 évvel ezelőtti dátum generálása
+        'ceg' => $this->faker->boolean(),
         'cegnev' => $this->faker->company(),
         'ceg_tipus' => $this->faker->randomElement(['Bt', 'Kft', 'Zrt']),
-        'ado_szam' => $this->faker->numerify('##########'), // 10 jegyű adószám generálása
+        'ado_szam' => $this->faker->numerify('########'),
         'bankszamlaszam' => $this->faker->iban('HU'), // Magyar bankszámlaszám generálása
         'orszag' => 'Magyarország',
         'iranyitoszam' => $this->faker->postcode(),

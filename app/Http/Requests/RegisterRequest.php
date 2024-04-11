@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
             "jelszo_megerositese" => "required|string|min:8",
             "telefonszam" => "required|string",
             "szemelyi_szam" => "required|string|min:8",
-            "szuletesi_datum" => "required|date_format:Y-m-d|before_or_equal:-18 years",
+            "szuletesi_datum" => "required|date_format:Y-m-d|before:-18 years",
             "ceg" => "required|boolean",
             "cegnev" => "required_if:ceg,true|string",
             "ceg_tipus" => "required_if:ceg,true|string",

@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('szolgaltatasoks', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('szolgaltatasok', function (Blueprint $table) {
+            $table->bigInteger('szolgaltatasid');
+            $table->string('szolgaltatasmegnevezes');
+            $table->bigInteger('csomagid');
+            $table->dateTime('foglalaskezdete');
+            $table->dateTime('foglalasvege');
+            $table->decimal('ar',10, 0);
+            $table->timestamps('');
         });
     }
 
