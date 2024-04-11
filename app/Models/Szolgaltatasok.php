@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Szolgaltatasok extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'szolgaltatasid',
+        'szolgaltatasmegnevezes',
+        'csomagid',
+        'foglalaskezdete',
+        'foglalasvege',
+        'ar',
+    ];
 }
