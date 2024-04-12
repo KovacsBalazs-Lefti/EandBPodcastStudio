@@ -12,13 +12,8 @@ class StoreFoglalasRequest extends FormRequest
      */
     public function authorize(): bool
     {
-<<<<<<< HEAD
 
        return true;
-=======
-        //foglalas előtti felhasználó ellenőrzés
-        return true;
->>>>>>> 224a3afb0d061a562cf41811ab0117104eb65d03
     }
 
     /**
@@ -29,23 +24,7 @@ class StoreFoglalasRequest extends FormRequest
     public function rules(): array
     {
         return [
-<<<<<<< HEAD
             //
-=======
-            'foglalaskezdete' => [
-                'required',
-                'date',
-                'after:now',
-                'before:foglalasvege',
-
-            ],
-            'foglalasvege' => [
-                'required',
-                'date',
-                'after:foglalaskezdete',
-            ],
-
->>>>>>> 224a3afb0d061a562cf41811ab0117104eb65d03
         ];
     }
 }

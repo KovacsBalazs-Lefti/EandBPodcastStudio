@@ -12,18 +12,9 @@ class Szolgaltatasok extends Model
 
     protected $fillable = [
         'szolgaltatasid',
-<<<<<<< HEAD
         'szolgaltatasnev',
         'leiras',
         'ar',
       ];
 
-=======
-        'szolgaltatasmegnevezes',
-        'csomagid',
-        'foglalaskezdete',
-        'foglalasvege',
-        'ar',
-    ];
->>>>>>> 224a3afb0d061a562cf41811ab0117104eb65d03
 }
