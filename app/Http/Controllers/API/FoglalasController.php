@@ -15,7 +15,9 @@ class FoglalasController extends Controller
      */
     public function index()
     {
-        //
+        //felhasználó lekérdezése
+        $user = auth()->user();
+        return Foglalas::where("felhasznaloid", $user->felhasznaloid)->get();
     }
 
     /**
