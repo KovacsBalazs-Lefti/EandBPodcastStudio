@@ -6,7 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFoglalasRequest;
 use App\Http\Requests\UpdateFoglalasRequest;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Models\Foglalas;
+=======
+use Illuminate\Support\Facades\Auth;
+use App\Models\Foglalas;
+
+
+>>>>>>> 224a3afb0d061a562cf41811ab0117104eb65d03
 
 class FoglalasController extends Controller
 {
@@ -25,6 +32,7 @@ class FoglalasController extends Controller
     {
         $user = $request->user();
 
+<<<<<<< HEAD
         $foglalas = new Foglalas([
             'felhasznaloid'=>$user->felhasznaloid,
             'szolgaltatas'=>$request->input('szolgaltatas'),
@@ -39,12 +47,35 @@ class FoglalasController extends Controller
                 'message' => ' A foglalás sikeresen létrejött!',
                 'foglalas' =>$foglalas
             ], 201);
+=======
+
+        // Új foglalás létrehozása a request alapján
+        $foglalas = new Foglalas([
+            'felhasznaloid'=>$user->felhasznaloid,
+            'foglalaskezdete' => $request->input('foglalaskezdete'),
+            'foglalasvege' => $request->input('foglalasvege')
+        ]);
+
+        // A foglaláshoz társítása a felhasználóhoz
+        $foglalas->save();
+
+        // Válasz küldése
+        return response()->json([
+            'message' => 'A foglalás sikeresen létrejött!',
+            'foglalas' => $foglalas
+        ], 201);
+
+>>>>>>> 224a3afb0d061a562cf41811ab0117104eb65d03
     }
 
     /**
      * Display the specified resource.
      */
+<<<<<<< HEAD
     public function show(string $felhasznaloid)
+=======
+    public function show(string $foglalasid)
+>>>>>>> 224a3afb0d061a562cf41811ab0117104eb65d03
     {
         //
     }
@@ -52,7 +83,11 @@ class FoglalasController extends Controller
     /**
      * Update the specified resource in storage.
      */
+<<<<<<< HEAD
     public function update(UpdateFoglalasRequest $request, string $felhasznaloid)
+=======
+    public function update(UpdateFoglalasRequest $request, string $foglalasid)
+>>>>>>> 224a3afb0d061a562cf41811ab0117104eb65d03
     {
         //
     }
@@ -60,7 +95,11 @@ class FoglalasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+<<<<<<< HEAD
     public function destroy(string $felhasznaloid)
+=======
+    public function destroy(string $foglalasid)
+>>>>>>> 224a3afb0d061a562cf41811ab0117104eb65d03
     {
         //
     }
