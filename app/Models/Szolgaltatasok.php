@@ -11,7 +11,8 @@ class Szolgaltatasok extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nev',
+        'szolgaltatasid',
+        'szolgaltatasnev',
         'leiras',
         'ar',
       ];

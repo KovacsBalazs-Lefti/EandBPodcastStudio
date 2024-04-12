@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Szolgaltatasok;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class SzolgaltatasokFactory extends Factory
 {
+    protected $model = Szolgaltatasok::class;
     /**
      * Define the model's default state.
      *

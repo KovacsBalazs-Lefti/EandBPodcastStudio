@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('szolgaltatasok', function (Blueprint $table) {
             $table->bigIncrements('szolgaltatasid');
-            $table->string('szolgaltatasmegnevezes');
+            $table->string('szolgaltatasnev');
             $table->string('leiras');
             $table->decimal('ar',10, 0);
             $table->timestamps();

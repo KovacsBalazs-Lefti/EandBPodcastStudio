@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSzolgaltatasokRequest;
 use App\Http\Requests\UpdateSzolgaltatasokRequest;
 use Illuminate\Http\Request;
-use App\Models\Szolgaltatasok;
 
 class SzolgaltatasokController extends Controller
 {
@@ -15,8 +14,7 @@ class SzolgaltatasokController extends Controller
      */
     public function index()
     {
-        $szolgaltatasok = Szolgaltatasok::all();
-        return response()->json($szolgaltatasok);
+        //
     }
 
     /**
@@ -24,25 +22,13 @@ class SzolgaltatasokController extends Controller
      */
     public function store(StoreSzolgaltatasokRequest $request)
     {
-        $user = $request->user();
-
-        $szolgaltatas = new Szolgaltatasok([
-            'nev' => $request->input('nev'),
-            'leiras'=> $request->input('leiras'),
-            'ar'=>$request->input('ar'),
-        ]);
-        $szolgaltatas->save();
-
-        return response()->json([
-            'message' => 'A szolgáltatás sikeresen létrejött!',
-            'szolgaltatas' => $szolgaltatas
-        ],201);
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $felhasznaloid)
+    public function show(string $id)
     {
         //
     }
@@ -50,7 +36,7 @@ class SzolgaltatasokController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSzolgaltatasokRequest $request, string $felhasznaloid)
+    public function update(UpdateSzolgaltatasokRequest $request, string $id)
     {
         //
     }
@@ -58,7 +44,7 @@ class SzolgaltatasokController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $felhasznaloid)
+    public function destroy(string $id)
     {
         //
     }
