@@ -39,6 +39,8 @@ class FoglalasController extends Controller
         $foglalas = new Foglalas($request->all());
         $foglalas->user_felhasznaloid = $user->felhasznaloid;
         $foglalas->save();
+        //user adatok lekérdezése
+        $foglalas->user;
         return $foglalas;
 
             // return response()->json([
