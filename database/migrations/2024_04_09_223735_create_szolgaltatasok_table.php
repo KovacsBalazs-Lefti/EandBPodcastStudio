@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('szolgaltatasok', function (Blueprint $table) {
-            $table->bigInteger('szolgaltatasid');
+            $table->bigIncrements('szolgaltatasid');
             $table->string('szolgaltatasmegnevezes');
-            $table->bigInteger('csomagid');
-            $table->dateTime('foglalaskezdete');
-            $table->dateTime('foglalasvege');
+            $table->string('leiras');
             $table->decimal('ar',10, 0);
-            $table->timestamps('');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('szolgaltatasoks');
+        Schema::dropIfExists('szolgaltatasok');
     }
 };
