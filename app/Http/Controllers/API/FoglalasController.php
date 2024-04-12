@@ -27,7 +27,7 @@ class FoglalasController extends Controller
 
         $foglalas = new Foglalas([
             'felhasznaloid'=>$user->felhasznaloid,
-            'szolgaltatas'=>$request->input('szolgaltas'),
+            'szolgaltatas'=>$request->input('szolgaltatas'),
             'letszam'=>$request->input('letszam'),
             'foglalaskezdete'=>$request->input('foglalaskezdete'),
             'foglalashossza'=>$request->input('foglalashossza'),

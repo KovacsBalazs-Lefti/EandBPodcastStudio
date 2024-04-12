@@ -15,8 +15,11 @@ return new class extends Migration
             $table->bigIncrements('foglalasid');
             $table->unsignedBigInteger('felhasznaloid');
             $table->foreign('felhasznaloid')->references('felhasznaloid')->on('users');
+            $table->string('szolgaltatas');
+            $table->integer('letszam');
             $table->dateTime('foglalaskezdete');
-            $table->dateTime('foglalasvege');
+            $table->integer('foglalashossza');
+            $table->text('megjegyzes')->nullable();
             $table->timestamps();
         });
     }

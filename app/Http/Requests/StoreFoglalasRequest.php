@@ -11,8 +11,8 @@ class StoreFoglalasRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        //foglalas előtti felhasználó ellenőrzés
-        return $this->user() && $this->user()->hasToken();
+      
+       return true;
     }
 
     /**
@@ -23,21 +23,6 @@ class StoreFoglalasRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'foglalaskezdete' => [
-                'required',
-                'date',
-                'after:now',
-                'after_or_equal:last_foglalas_vege',
-                'after_or_equal:now + 15 minutes',
-            ],
-            'foglalasvege' => [
-                'required',
-                'date',
-                'after:foglalaskezdete',
-                'after_or_equal:foglalaskezdete',
-                'before_or_equal:foglalasvege +8 hours',
-            ],
-
         ];
     }
 }
