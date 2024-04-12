@@ -28,7 +28,7 @@ class UserFactory extends Factory
 
         return [
         'nev' => $name,
-        'email' => $this->faker->unique()->safeEmail(),
+        'email' => $email,
         'jelszo' => bcrypt('pistike48'),
         'telefonszam' => $this->faker->phoneNumber(),
         'szemelyi_szam' => $this->faker->regexify('[A-Za-z0-9]{8}'),

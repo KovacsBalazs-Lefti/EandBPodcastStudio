@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFoglalasRequest;
 use App\Http\Requests\UpdateFoglalasRequest;
 use Illuminate\Http\Request;
+use App\Models\Foglalas;
 
 class FoglalasController extends Controller
 {
@@ -22,13 +23,28 @@ class FoglalasController extends Controller
      */
     public function store(StoreFoglalasRequest $request)
     {
-        //
+        $user = $request->user();
+
+        $foglalas = new Foglalas([
+            'felhasznaloid'=>$user->felhasznaloid,
+            'szolgaltatas'=>$request->input('szolgaltas'),
+            'letszam'=>$request->input('letszam'),
+            'foglalaskezdete'=>$request->input('foglalaskezdete'),
+            'foglalashossza'=>$request->input('foglalashossza'),
+            'megjegyzes'=>$request->input('megjegyzes'),
+        ]);
+            $foglalas->save();
+
+            return response()->json([
+                'message' => ' A foglalás sikeresen létrejött!',
+                'foglalas' =>$foglalas
+            ], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $felhasznaloid)
     {
         //
     }
@@ -36,7 +52,7 @@ class FoglalasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFoglalasRequest $request, string $id)
+    public function update(UpdateFoglalasRequest $request, string $felhasznaloid)
     {
         //
     }
@@ -44,7 +60,7 @@ class FoglalasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $felhasznaloid)
     {
         //
     }

@@ -26,7 +26,7 @@ class SzolgaltatasokController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $felhasznaloid)
     {
         //
     }
@@ -34,7 +34,7 @@ class SzolgaltatasokController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $felhasznaloid)
     {
         //
     }
@@ -42,7 +42,7 @@ class SzolgaltatasokController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $felhasznaloid)
     {
         //
     }

@@ -10,9 +10,13 @@ class Foglalas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'foglalasid',
-        'foglalaskezdete',
-        'foglalasvege',
+      'felhasznaloid',
+      'szolgaltatas',
+      'letszam',
+      'foglalaskezdete',
+      'foglalashossza',
+      'megjegyzes',
+
     ];
 }
 
