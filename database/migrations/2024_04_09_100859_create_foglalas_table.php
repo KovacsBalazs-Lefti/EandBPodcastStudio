@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Carbon;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -14,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('foglalas', function (Blueprint $table) {
             $table->bigIncrements('foglalasid');
-            $table->unsignedBigInteger('felhasznaloid');
-            $table->foreign('felhasznaloid')->references('felhasznaloid')->on('users');
+            $table->unsignedBigInteger('user_felhasznaloid');
+            //$table->foreignIdFor(User::class)->constrained();
+            $table->foreign('user_felhasznaloid')->references('felhasznaloid')->on('users');
             $table->string('szolgaltatas');
             $table->integer('letszam');
             $table->dateTime('foglalaskezdete');

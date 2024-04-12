@@ -17,7 +17,8 @@ class FoglalasController extends Controller
     {
         //felhasználó lekérdezése
         $user = auth()->user();
-        return Foglalas::where("felhasznaloid", $user->felhasznaloid)->get();
+        return $user->foglalas;
+        //return Foglalas::where("felhasznaloid", $user->felhasznaloid)->get();
     }
 
     /**
@@ -25,22 +26,25 @@ class FoglalasController extends Controller
      */
     public function store(StoreFoglalasRequest $request)
     {
-        $user = $request->user();
+        $user = auth()->user();
 
-        $foglalas = new Foglalas([
-            'felhasznaloid'=>$user->felhasznaloid,
-            'szolgaltatas'=>$request->input('szolgaltatas'),
-            'letszam'=>$request->input('letszam'),
-            'foglalaskezdete'=>$request->input('foglalaskezdete'),
-            'foglalashossza'=>$request->input('foglalashossza'),
-            'megjegyzes'=>$request->input('megjegyzes'),
-        ]);
-            $foglalas->save();
+        // $foglalas = new Foglalas([
+        //     'felhasznaloid'=>$user->felhasznaloid,
+        //     'szolgaltatas'=>$request->input('szolgaltatas'),
+        //     'letszam'=>$request->input('letszam'),
+        //     'foglalaskezdete'=>$request->input('foglalaskezdete'),
+        //     'foglalashossza'=>$request->input('foglalashossza'),
+        //     'megjegyzes'=>$request->input('megjegyzes'),
+        // ]);
+        $foglalas = new Foglalas($request->all());
+        $foglalas->user_felhasznaloid = $user->felhasznaloid;
+        $foglalas->save();
+        return $foglalas;
 
-            return response()->json([
-                'message' => ' A foglalás sikeresen létrejött!',
-                'foglalas' =>$foglalas
-            ], 201);
+            // return response()->json([
+            //     'message' => ' A foglalás sikeresen létrejött!',
+            //     'foglalas' =>$foglalas
+            // ], 201);
     }
 
     /**

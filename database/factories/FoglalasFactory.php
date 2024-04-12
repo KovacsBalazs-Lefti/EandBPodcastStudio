@@ -22,10 +22,10 @@ class FoglalasFactory extends Factory
     public function definition(): array
     {
             $allfelhasznaloid = User::all()->pluck('felhasznaloid');
-            $userfelhasznaloid = $this->faker->randomElement($allfelhasznaloid);
+            $user_felhasznaloid = $this->faker->randomElement($allfelhasznaloid);
 
             return [
-                'felhasznaloid' => $userfelhasznaloid,
+                'user_felhasznaloid' => $user_felhasznaloid,
                 'szolgaltatas' => $this->faker->sentence(),
                 'letszam' => rand(1, 5),
                 'foglalaskezdete' => Carbon::now()->addDays(rand(1, 365)), // Add 1 to 365 days to current date
