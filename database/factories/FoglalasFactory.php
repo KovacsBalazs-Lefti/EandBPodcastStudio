@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Foglalas;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
+use Illuminate\Support\Carbon;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Foglalas>
@@ -19,9 +21,16 @@ class FoglalasFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            
+            $allfelhasznaloid = User::all()->pluck('felhasznaloid');
+            $userfelhasznaloid = $this->faker->randomElement($allfelhasznaloid);
 
-        ];
+            return [
+                'felhasznaloid' => $userfelhasznaloid,
+                'szolgaltatas' => $this->faker->sentence(),
+                'letszam' => rand(1, 5),
+                'foglalaskezdete' => Carbon::now()->addDays(rand(1, 365)), // Add 1 to 365 days to current date
+                'foglalashossza' => rand(1, 7),
+                'megjegyzes' => $this->faker->paragraph(2), // Generate 2 paragraphs
+            ];
     }
 }
