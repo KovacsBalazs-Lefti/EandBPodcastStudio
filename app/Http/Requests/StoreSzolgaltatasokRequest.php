@@ -22,7 +22,9 @@ class StoreSzolgaltatasokRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "szolgaltatasnev" => "required|string|max:100",
+            "leiras" => "string",
+            "ar"  => "required|numeric|gt:0",
         ];
     }
 }

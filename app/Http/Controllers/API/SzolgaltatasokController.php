@@ -15,7 +15,10 @@ class SzolgaltatasokController extends Controller
      */
     public function index()
     {
-        return Szolgaltatasok::all();
+        //$user= auth()->user();
+        //return Szolgaltatasok::where("user_felhasznaloid", $user->szolgaltatasid)->get();
+        $szolgaltatasok = Szolgaltatasok::all();
+        return $szolgaltatasok;
     }
 
     /**
@@ -23,7 +26,14 @@ class SzolgaltatasokController extends Controller
      */
     public function store(StoreSzolgaltatasokRequest $request)
     {
-        //
+        $user = auth()->user();
+        $szolgaltatas = new Szolgaltatasok($request->all());
+        //userid beállítása az authentikált user id-ra
+        $szolgaltatas->user_felhasznaloid = $user->felhasznaloid;
+        $szolgaltatas->foglalasid_szolgaltatasok = $user->foglalasid;
+        $szolgaltatas->save();
+        return $szolgaltatas;
+
     }
 
     /**

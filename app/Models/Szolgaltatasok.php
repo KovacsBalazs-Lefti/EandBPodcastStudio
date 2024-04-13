@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Szolgaltatasok extends Model
 {
@@ -27,9 +27,9 @@ class Szolgaltatasok extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function foglalasok() : BelongsTo
+    public function foglalasok() : BelongsToMany
     {
-        return $this->belongsTo(Foglalas::class);
+        return $this->belongsToMany(Foglalas::class);
     }
 
 }
