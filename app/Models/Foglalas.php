@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -13,7 +14,7 @@ class Foglalas extends Model
     protected $table = 'foglalas';
     protected $primaryKey = 'foglalasid';
 
-    use HasFactory;
+    use SoftDeletes, HasFactory;
 
     protected $fillable = [
       'felhasznaloid',

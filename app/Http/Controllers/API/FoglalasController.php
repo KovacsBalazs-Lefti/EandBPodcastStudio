@@ -19,6 +19,9 @@ class FoglalasController extends Controller
     {
         //felhasználó lekérdezése
         $user = auth()->user();
+        //csak a törölt foglalás visszaadása
+        return Foglalas::onlyTrashed()->where("user_felhasznaloid",$user->felhasznaloid)->get();
+        //return Foglalas::withTrashed()->where(["user_felhasznaloid" => $user->felhasznaloid, ["deleted_at", "<>", null]])->get();
         return $user->foglalas;
         //return Foglalas::where("felhasznaloid", $user->felhasznaloid)->get();
     }
@@ -72,7 +75,17 @@ class FoglalasController extends Controller
      */
     public function update(UpdateFoglalasRequest $request, string $felhasznaloid)
     {
-        //
+        //egy rekord lekérdezése
+        $foglalas = Foglalas::find($felhasznaloid);
+        //ellenőrzés végrehajtasa, ha nincs - akkor hibaüzenet
+        if(is_null($foglalas)){
+            return response()->json(["message" => "Foglalás nem található: $felhasznaloid"], 404);
+        }
+        $this->authorize("update", $foglalas);
+        $foglalas->fill($request->all());
+        return $foglalas->save();
+        return $foglalas;
+
     }
 
     /**
@@ -80,6 +93,15 @@ class FoglalasController extends Controller
      */
     public function destroy(string $felhasznaloid)
     {
-        //
+       //egy rekord lekérdezése
+       $foglalas = Foglalas::find($felhasznaloid);
+       //ellenőrzés végrehajtasa, ha nincs - akkor hibaüzenet
+       if(is_null($foglalas)){
+           return response()->json(["message" => "Foglalás nem található: $felhasznaloid"], 404);
+       }
+       $this->authorize("Delete", $foglalas);
+       $foglalas->delete();
+       return response()->noContent();
+
     }
 }
