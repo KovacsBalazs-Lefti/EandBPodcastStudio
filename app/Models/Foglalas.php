@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 class Foglalas extends Model
@@ -23,12 +24,17 @@ class Foglalas extends Model
       'foglalaskezdete',
       'foglalashossza',
       'megjegyzes',
+      'user_felhasznaloid',
 
     ];
 
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    public function foglalas() : HasMany
+    {
+        return $this->hasMany(Szolgaltatasok::class);
     }
 }
 

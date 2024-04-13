@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
+use App\Models\Foglalas;
 
 return new class extends Migration
 {
@@ -13,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('szolgaltatasok', function (Blueprint $table) {
             $table->bigIncrements('szolgaltatasid');
-            $table->string('szolgaltatasnev');
-            $table->string('leiras');
+            $table->string('szolgaltatasnev',100);
+            $table->text('leiras');
             $table->decimal('ar',10, 0);
+            $table->foreignIdFor(User::class)->contrainded();
+            $table->foreignIdFor(Foglalas::class)->contrained();
             $table->timestamps();
         });
     }

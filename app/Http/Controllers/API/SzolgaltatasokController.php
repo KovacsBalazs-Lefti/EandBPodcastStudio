@@ -36,7 +36,7 @@ class SzolgaltatasokController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSzolgaltatasokRequest $request, string $id)
+    public function update(UpdateSzolgaltatasokRequest $request, string $szolgalatasid)
     {
         //
     }
@@ -44,7 +44,7 @@ class SzolgaltatasokController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $szolgalatasid)
     {
         //
     }

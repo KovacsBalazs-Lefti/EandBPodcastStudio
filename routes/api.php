@@ -27,7 +27,5 @@ Route::post('/logout-logoutEverywhere',[AuthController::class,'logoutEverywhere'
 Route::apiResource('/foglalas', FoglalasController::class)->middleware('auth:sanctum');
 
 
-Route::apiResource('/szolgaltatasok', SzolgaltatasokController::class)->middleware('auth:sanctum');
+Route::apiResource("/szolgaltatasok", SzolgaltatasokController::class)->middleware("auth:sanctum");
 
-
-Route::post('/api/Szolgaltatasok', [SzolgaltatasokController::class, 'store']);
