@@ -13,6 +13,10 @@ class FoglalasPolicy
      */
     public function viewAny(User $user): bool
     {
+        //szerepkör oszlop felvétel opciója
+        // role: admin, user
+        // return $user->role == "admin"
+
         return true;
     }
 
@@ -21,7 +25,8 @@ class FoglalasPolicy
      */
     public function view(User $user, Foglalas $foglalas): bool
     {
-        return true;
+        //minden felhasználó saját foglalasat tekintheti meg
+        return $user->felhasznaloid == $foglalas->user_felhasznaloid;
     }
 
     /**
@@ -37,7 +42,7 @@ class FoglalasPolicy
      */
     public function update(User $user, Foglalas $foglalas): bool
     {
-        return true;
+        return $user->felhasznaloid == $foglalas->user_felhasznaloid;
     }
 
     /**
@@ -45,7 +50,7 @@ class FoglalasPolicy
      */
     public function delete(User $user, Foglalas $foglalas): bool
     {
-        return true;
+        return $user->felhasznaloid == $foglalas->user_felhasznaloid;
     }
 
     /**
@@ -53,7 +58,7 @@ class FoglalasPolicy
      */
     public function restore(User $user, Foglalas $foglalas): bool
     {
-        return true;
+        return $user->felhasznaloid == $foglalas->user_felhasznaloid;
     }
 
     /**

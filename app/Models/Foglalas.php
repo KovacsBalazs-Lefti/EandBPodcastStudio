@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class Foglalas extends Model
 {
+    protected $table = 'foglalas';
+    protected $primaryKey = 'foglalasid';
+
     use HasFactory;
 
     protected $fillable = [

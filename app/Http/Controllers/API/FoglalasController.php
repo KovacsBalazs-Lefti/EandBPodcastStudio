@@ -7,9 +7,11 @@ use App\Http\Requests\StoreFoglalasRequest;
 use App\Http\Requests\UpdateFoglalasRequest;
 use Illuminate\Http\Request;
 use App\Models\Foglalas;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class FoglalasController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -39,8 +41,9 @@ class FoglalasController extends Controller
         $foglalas = new Foglalas($request->all());
         $foglalas->user_felhasznaloid = $user->felhasznaloid;
         $foglalas->save();
-        //user adatok lekérdezése
-        $foglalas->user;
+        //user adatok lekérdezése pl email megmutatas-frontenden
+        //$foglalas->user;
+
         return $foglalas;
 
             // return response()->json([
@@ -54,7 +57,14 @@ class FoglalasController extends Controller
      */
     public function show(string $felhasznaloid)
     {
-        //
+        //egy rekord lekérdezése
+        $foglalas = Foglalas::find($felhasznaloid);
+        //ellenőrzés végrehajtasa, ha nincs - akkor hibaüzenet
+        if(is_null($foglalas)){
+            return response()->json(["message" => "Foglalás nem található: $felhasznaloid"], 404);
+        }
+        $this->authorize("View", $foglalas);
+        return $foglalas;
     }
 
     /**
