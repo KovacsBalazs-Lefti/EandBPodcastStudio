@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Szolgaltatasok extends Model
 {
+    protected $table = 'szolgaltatasok';
+    protected $primaryKey = 'szolgaltatasid';
     use HasFactory;
 
     protected $fillable = [
@@ -17,6 +19,7 @@ class Szolgaltatasok extends Model
         'leiras',
         'ar',
         'user_felhasznaloid',
+        'foglalasid_szolgaltatasok',
       ];
 
 
