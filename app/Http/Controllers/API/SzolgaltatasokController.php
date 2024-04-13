@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSzolgaltatasokRequest;
 use App\Http\Requests\UpdateSzolgaltatasokRequest;
+use App\Models\Szolgaltatasok;
 use Illuminate\Http\Request;
 
 class SzolgaltatasokController extends Controller
@@ -14,7 +15,7 @@ class SzolgaltatasokController extends Controller
      */
     public function index()
     {
-        //
+        return Szolgaltatasok::all();
     }
 
     /**
@@ -28,7 +29,7 @@ class SzolgaltatasokController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $szolgalatasid)
     {
         //
     }
