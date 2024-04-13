@@ -4,7 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Szolgaltatasok;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\Foglalas;
+use App\Models\User;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Szolgaltatasok>
  */
@@ -18,17 +19,18 @@ class SzolgaltatasokFactory extends Factory
      */
     public function definition(): array
     {
-        $allfelhasznaloid = User::all()-puck('felhasznaloid');
+        $allfelhasznaloid = User::all()->pluck('felhasznaloid');
         $user_felhasznaloid = $this->faker->randomElement($allfelhasznaloid);
-        $allfelhasznaloid = Foglalas::all()-puck('felhasznaloid');
+
+        $allfoglalasid_szolgaltatas = Foglalas::all()->pluck('foglalasid_szolgaltatas');
+        $foglalasid_szolgaltatas = $this->faker->randomElement($allfoglalasid_szolgaltatas);
 
         return [
             'szolgaltatasnev' => $this->faker->sentence(10),
-            'leiras' => $this->faker->paragraph,
-            'ar'$this->faker->numberBetween(25000, 180000),
+            'leiras' => $this->faker->paragraph(),
+            'ar'=> $this->faker->numberBetween(25000, 180000),
             'user_felhasznaloid' => $user_felhasznaloid,
-
-            'foglalasid_szolgaltatas'
+            'foglalasid_szolgaltatas' => $foglalasid_szolgaltatas,
         ];
     }
 }
