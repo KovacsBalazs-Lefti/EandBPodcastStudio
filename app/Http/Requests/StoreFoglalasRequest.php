@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\User;
+use App\Models\Foglalas;
 use Illuminate\Validation\Rule;
 
 class StoreFoglalasRequest extends FormRequest
@@ -24,6 +25,7 @@ class StoreFoglalasRequest extends FormRequest
      */
     public function rules(): array
     {
+        $foglalasid = $this->input('foglalasid');
         return [
             'foglalaskezdete' => [
                 'required',
@@ -35,21 +37,32 @@ class StoreFoglalasRequest extends FormRequest
                 'numeric',
                 'min:1', // A foglalás hossza legalább 1 óra
                 'max:8', // A foglalás hossza maximum 8 óra
-                Rule::unique('foglalas')->where(function ($query) {
-                    return $query->where('foglalaskezdete', $this->input('foglalaskezdete'))
-                                 ->where('user_felhasznaloid', $this->user()->felhasznaloid);
-                }), // Egy felhasználó csak egyszer foglalhat egy adott időpontra
             ],
             'letszam' => [
                 'required',
                 'numeric',
                 'max:6', // Maximum 6 fő lehet
+
             ],
             'megjegyzes' => [
                 'nullable',
                 'string',
-                'max:500', // Maximum 500 karakter lehet
+                'max:500', // Maximum 1000 karakter lehet
             ],
+            //szabály ami lehetővé teszi a meglévő foglalással való módosítást is
+            Rule::unique('foglalas')->where(function ($query) use ($foglalasid) {
+                $foglalaskezdete = $this->input('foglalaskezdete');
+                $felhasznaloid = $this->user()->felhasznaloid;
+
+                $query = $query->where('foglalaskezdete', $foglalaskezdete)
+                               ->where('user_felhasznaloid', $felhasznaloid);
+
+                if ($foglalasid) {
+                    $query->where('foglalasid', '!=', $foglalasid);
+                }
+
+                return $query;
+            }),
         ];
     }
 }
