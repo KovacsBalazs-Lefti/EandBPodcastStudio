@@ -17,6 +17,7 @@ class Szolgaltatasok extends Model
         'leiras',
         'ar',
         'user_felhasznaloid',
+        'foglalasid_szolgaltatas',
       ];
 
 

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('szolgaltatasnev',100);
             $table->text('leiras');
             $table->decimal('ar',10, 0);
-            $table->foreignIdFor(User::class)->contrainded();
+            $table->foreignIdFor(User::class)->contrained();
             $table->foreignIdFor(Foglalas::class)->contrained();
             $table->timestamps();
         });

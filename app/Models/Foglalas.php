@@ -25,14 +25,14 @@ class Foglalas extends Model
       'foglalashossza',
       'megjegyzes',
       'user_felhasznaloid',
-
+      'foglalasid_szolgaltatas',
     ];
 
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-    public function foglalas() : HasMany
+    public function szolgaltatasok() : HasMany
     {
         return $this->hasMany(Szolgaltatasok::class);
     }
