@@ -17,12 +17,16 @@ class Szolgaltatasok extends Model
         'leiras',
         'ar',
         'user_felhasznaloid',
-        'foglalasid_szolgaltatas',
       ];
 
 
       public function user() : BelongsTo
     {
+        return $this->belongsTo(User::class);
+    }
+    public function foglalasok() : BelongsTo
+    {
         return $this->belongsTo(Foglalas::class);
     }
+
 }

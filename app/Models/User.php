@@ -72,7 +72,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function foglalas() : HasMany
+    public function foglalasok() : HasMany
     {
         return $this->hasMany(Foglalas::class);
     }

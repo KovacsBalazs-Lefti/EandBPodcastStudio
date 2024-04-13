@@ -13,6 +13,6 @@ class SzolgaltatasokSeeder extends Seeder
      */
     public function run(): void
     {
-        //Szolgaltatasok::factory(3)->create();
+        Szolgaltatasok::factory(3)->create();
     }
 }

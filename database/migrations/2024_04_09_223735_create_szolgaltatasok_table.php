@@ -18,8 +18,12 @@ return new class extends Migration
             $table->string('szolgaltatasnev',100);
             $table->text('leiras');
             $table->decimal('ar',10, 0);
-            $table->foreignIdFor(User::class)->contrained();
-            $table->foreignIdFor(Foglalas::class)->contrained();
+            $table->unsignedBigInteger('foglalasid_szolgaltatasok');
+            $table->foreign('foglalasid_szolgaltatasok')->references('foglalasid')->on('foglalas');
+            //$table->foreignIdFor(Foglalas::class)->constrained();
+            $table->unsignedBigInteger('user_felhasznaloid');
+            //$table->foreignIdFor(User::class)->constrained();
+            $table->foreign('user_felhasznaloid')->references('felhasznaloid')->on('users');
             $table->timestamps();
         });
     }
